@@ -1,0 +1,101 @@
+#fondo{
+    background-image: url("../../img/Liminal_64.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    padding:0 20px;
+
+}
+
+#contenedor{
+    width: 800px;
+    height: 1000px;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px #000;
+    margin: 150px auto;
+    border: 1px solid #ffffff40;
+}
+
+.filter{
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    background-color: rgba(243,243,243,0.2);
+}
+
+#crear {
+    padding: 17px 40px;
+    border-radius: 50px;
+    border: 0;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all .5s ease;
+    cursor: pointer;
+   }
+   
+   #crear:hover {
+    letter-spacing: 3px;
+    background-color: #e81161;
+    color: hsl(0, 0%, 100%);
+    box-shadow: #e81161;
+   }
+   
+   #crear:active {
+    letter-spacing: 3px;
+    background-color: #e81161;
+    color: hsl(0, 0%, 100%);
+    box-shadow: #e81161 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+   }
+   #volver {
+    font-size: 18px;
+    color: #000000;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+  }
+  
+  #volver:focus,
+  #volver:hover {
+    color: rgb(0, 0, 0);
+  }
+  
+  #volver:focus:after,
+  #volver:hover:after {
+    width: 100%;
+    left: 0%;
+  }
+  
+  #volver:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: rgb(0, 0, 0);
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
+
+  h1{
+    font-family: inherit;
+    font-weight: 790
+  }
+   

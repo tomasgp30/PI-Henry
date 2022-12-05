@@ -1,0 +1,36 @@
+#homeShowcase {
+    background-image: url("../../img/Trademark_Distortion.png");
+    background-position: center;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+footer{
+    display: flex;
+    justify-content: center;
+}
+#gitHub{
+    width: 30px;
+    height: 30px;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+#nav{
+    box-shadow: 0 10px 30px #000;
+    margin: auto;
+    border: 1px solid #ffffff40;
+}
+
+#logo{
+    width: 200px;
+    height: 200px;
+    left: 100;
+    
+}
+
+.blur{
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    background-color: rgba(243,243,243,0.2);
+}
