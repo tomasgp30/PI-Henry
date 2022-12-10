@@ -2,6 +2,7 @@
     background-image: url("../../img/Trademark_Distortion.png");
     background-position: center;
     height: 100%;
+    min-height: 100vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -23,10 +24,12 @@ footer{
 }
 
 #logo{
-    width: 200px;
-    height: 200px;
-    left: 100;
-    
+    display: flex;
+    justify-content: start;
+    width: 245px;
+    height: 55px;
+    margin-left: 50px;
+       
 }
 
 .blur{

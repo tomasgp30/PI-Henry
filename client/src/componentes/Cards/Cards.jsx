@@ -9,7 +9,7 @@ export default function Cards(props){
         <div className="cards">
             {props.currentGames?.map(e => {
                 return (
-                    <Link to={'/home/' + e.id}>
+                    <Link to={'/home/:' + e.id}>
                         <Card name={e.name} image={e.img} genres={e.genres} key={e.id}/>
                     </Link>                
                 )

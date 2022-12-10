@@ -6,27 +6,27 @@ import "./CreateGame.css"
 
 function validate(input) {
     let errors = {};
-    if(!input.name){
+    if(input.name === ""){
         errors.name = 'Se requiere un Nombre'
     }
-    if(!input.description){
+    if(input.description === ""){
         errors.description = 'Se requiere una descripcion'
     }
-    if(!input.date){
+    if(input.date === ""){
         errors.date = 'Se requiere una fecha de lanzamiento'
     }else if(!/^\s*(3[01]|[12][0-9]|0?[1-9])\/(1[012]|0?[1-9])\/((?:19|20)\d{2})\s*$/.test(input.date)){
         errors.date = 'El formato de la fecha es incorrecto'
     }
-    if(!input.img){
-        errors.date = 'Se requiere una imagen'
+    if(input.img === ""){
+        errors.img = 'Se requiere una imagen'
     }
-    if(!input.rating){
-        errors.date = 'Se requiere el rating'
+    if(input.rating === ""){
+        errors.rating = 'Se requiere el rating'
     }
-    if(!input.platforms){
+    if(!input.platforms.length){
         errors.platforms = 'Se requiere al menos una plataforma'
     }
-    if(!input.genres){
+    if(!input.genres.length){
         errors.genres = 'Se requiere al menos un genero'
     }
 }
@@ -71,6 +71,11 @@ export default function CreateGame(){
 
     function handleSubmit(e){
         e.preventDefault();
+        setErrors(validate({
+            ...input,
+            [e.target.name] : e.target.value
+        }))
+        console.log(errors)
         if(errors) return alert('Hubo un error al enviar el juego!!')
         dispatch(postGame(input))
         alert("Juego creado!!")
@@ -97,43 +102,85 @@ export default function CreateGame(){
                 <h1>Crea tu juego</h1>
                 <form onSubmit={e => handleSubmit(e)}>
                     <div>
-                        <label>Nombre:</label>
-                        <input type="text" value={input.name} name="name" key={input.name} onChange={e => handleChange(e)}/>
+                        <label className="desc" id="title1" for="name">Nombre</label>
+                        <div>
+                            <input type="text" id="Field1" className="field text fn" value={input.name} name="name" size="8" tabIndex="1" onChange={e => handleChange(e)}/>
+                        </div> 
                     </div>
                     <div>   
-                        <label>Fecha de lanzamiento:</label>
-                        <input type="text" value={input.date} name="date" key={input.date} onChange={e => handleChange(e)}/>
+                        <label className="desc" id="title3" for="date">Fecha de lanzamiento</label>
+                        <div>
+                            <input className="desc" id="Field3" type="text" value={input.date} name="date" maxLength="10" onChange={e => handleChange(e)}/>
+                        </div>                     
                     </div>
                     <div>
-                        <label>Imagen:</label>
-                        <input type="text" value={input.image} name="img" key={input.image} onChange={e => handleChange(e)}/>
+                        <label className="desc" id="title3" for="img">Imagen</label>
+                        <div>
+                            <input className="desc" id="Field3" type="text" value={input.image} name="img"  onChange={e => handleChange(e)}/>
+                        </div>
                     </div>
                     <div>
-                        <label>Rating:</label>
-                        <input type="number" value={input.rating} name="rating" key={input.rating} onChange={e => handleChange(e)}/>
+                        <label className="desc" id="title3" for="rating">Rating</label>
+                        <div className="rating">
+                            <label>
+                            <input type="radio" name="rating" value="1" onChange={e => handleChange(e)}/>
+                              <span class="icon">★</span>
+                            </label>
+                            <label>
+                              <input type="radio" name="rating" value="2" onChange={e => handleChange(e)}/>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                            </label>
+                            <label>
+                              <input type="radio" name="rating" value="3" onChange={e => handleChange(e)}/>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>   
+                            </label>
+                            <label>
+                              <input type="radio" name="rating" value="4" onChange={e => handleChange(e)}/>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                            </label>
+                            <label>
+                              <input type="radio" name="rating" value="5" onChange={e => handleChange(e)}/>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                              <span class="icon">★</span>
+                            </label>
+                        </div>
                     </div>
                      <div>   
-                        <label>Descripcion del juego:
-                        <textarea rows="3" cols="30"  value={input.description} name="description"  key={input.description} onChange={e => handleChange(e)}/>
-                        </label>
+                        <label className="desc" id="title4" for="description">Descripcion del juego</label>
+                        <div>
+                            <textarea id="Field4" spellCheck="true" rows="10" cols="50" tabIndex="4" value={input.description} name="description"  onChange={e => handleChange(e)}/>
+                        </div>
                     </div>
                     <div>
-                        <label>Plataformas:</label>
-                        <label><input type="checkbox" name="platforms" value="PC" onChange={e => handleCheck(e)}/>PC</label>
-                        <label><input type="checkbox" name="platforms" value="PS3" onChange={e => handleChange(e)}/>Ps3</label>
-                        <label><input type="checkbox" name="platforms" value="PS4" onChange={e => handleChange(e)}/>Ps4</label>
-                        <label><input type="checkbox" name="platforms" value="PS5" onChange={e => handleChange(e)}/>Ps5</label>
-                        <label><input type="checkbox" name="platforms" value="Xbox360" onChange={e => handleChange(e)}/>Xbox 360</label>
-                        <label><input type="checkbox" name="platforms" value="XboxOne" onChange={e => handleChange(e)}/>Xbox One</label>
-                        <label><input type="checkbox" name="platforms" value="XboxSeriesX" onChange={e => handleChange(e)}/>Xbox Series X</label>
-                        <label><input type="checkbox" name="platforms" value="Switch" onChange={e => handleChange(e)}/>Switch</label>
-                        <label><input type="checkbox" name="platforms" value="Mobile" onChange={e => handleChange(e)}/>Mobile</label>
+                        <fieldset>
+                            <legend id="title6" className="desc">Plataformas</legend>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="PC" tabIndex="8" onChange={e => handleCheck(e)}/>PC</label>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="PS3" tabIndex="8" onChange={e => handleChange(e)}/>Ps3</label>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="PS4" tabIndex="8" onChange={e => handleChange(e)}/>Ps4</label>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="PS5" tabIndex="8" onChange={e => handleChange(e)}/>Ps5</label>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="Xbox360" tabIndex="8" onChange={e => handleChange(e)}/>Xbox 360</label>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="XboxOne" tabIndex="8" onChange={e => handleChange(e)}/>Xbox One</label>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="XboxSeriesX" tabIndex="8" onChange={e => handleChange(e)}/>Xbox Series X</label>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="Switch" tabIndex="8" onChange={e => handleChange(e)}/>Switch</label>
+                            <label className="choice"><input id="Field6" type="checkbox" name="platforms" value="Mobile" tabIndex="8" onChange={e => handleChange(e)}/>Mobile</label>
+                        </fieldset>
                     </div>
                     <div>
-                        <label>Generos:</label>
-                        {genres.map((gen) => (
-                            <label><input type="checkbox" name="genres" value={gen} onChange={e => handleChange(e)}/>{gen}</label>
-                        ))}
+                        <fieldset>
+                            <legend>Generos</legend>
+                            {genres.map((gen) => (
+                                <label className="choice"><input id="Field6" type="checkbox" name="genres" value={gen} tabIndex="8" onChange={e => handleChange(e)}/>{gen}</label>
+                            ))}
+                        </fieldset>
                     </div>
                     <div>
                         <button id="crear" type="submit" >Crear Juego</button>

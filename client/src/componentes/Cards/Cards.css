@@ -1,16 +1,3 @@
-:root {
-    --surface-color: rgb(255, 255, 255);
-    --curve: 40;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background-color: #ffffff;
-  }
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

@@ -22,7 +22,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    image: {
+    rating: {
+      type: DataTypes.STRING
+    },
+    img: {
       type: DataTypes.STRING,
       allowNull: false
     },

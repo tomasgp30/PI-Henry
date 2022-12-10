@@ -73,6 +73,7 @@ router.get('/videogames', async (req, res) => {
 // GET GAME POR ID
 router.get('/videogame/:id', async (req, res) => {
     const { id } = req.params;
+    let totalGames = await getAllGames();
         try {
             let game = await totalGames.filter(e => e.id === id)
             if(game.length){ 
@@ -97,14 +98,12 @@ router.get('/genres', async (req, res) =>{
 
 // PUBLICAR JUEGO
 router.post('/videogames', async (req, res) =>{
-    const {name, description, date, image, rating, platforms, createdInDb, genres} = req.body
-    console.log(name)
-    console.log(description)
+    const {name, description, date, img, rating, platforms, createdInDb, genres} = req.body
     const gameCreated = await Videogame.create({
         name, 
         description, 
         date, 
-        image,
+        img,
         rating, 
         platforms,
         createdInDb

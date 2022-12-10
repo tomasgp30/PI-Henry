@@ -12,6 +12,7 @@ import Loading from "../Loading/Loading.jsx"
 import NotFound from "../NotFound/NotFound.jsx"
 import SearchBar from "../SearchBar/SearchBar.jsx";
 import "./Home.css"
+import image from "./Gamepedia.png"
 
 
 export default function Home (){
@@ -20,6 +21,8 @@ export default function Home (){
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage] = useState(15);
+    const [ordenado, setOrdenado] = useState('')
+    //paginado
     const indexLastGame = currentPage * gamesPerPage;
     const indexFirstGame = indexLastGame - gamesPerPage
     const currentGames = allGames.slice(indexFirstGame, indexLastGame)
@@ -36,15 +39,21 @@ export default function Home (){
     },[dispatch])
 
     function handleFilterByCreated(e){
+        e.preventDefault(e)
         dispatch(filterGamesCreated(e.target.value));
+        setOrdenado(`Ordenado ${e.target.value}`)
     }
 
     function handleFilterByRating(e){
+        e.preventDefault(e)
         dispatch(filterGamesByRating(e.target.value))
+        setOrdenado(`Ordenado ${e.target.value}`)
     }
 
     function handleFilterByAlf(e){
+        e.preventDefault(e)
         dispatch(filterGamesByAlf(e.target.value))
+        setOrdenado(`Ordenado ${e.target.value}`)
     }
 
 
@@ -59,15 +68,17 @@ export default function Home (){
                 ) : (
                     <div>
                         <nav id="nav" className="blur">
-                            <Link to= '/videogame'>Crear juego</Link>
-                            <img id="logo" src="./Gamepedia.png" alt="Logo Not Found" />
+                            <Link to= '/videogame' id="crea">Crea tu juego</Link>
+                            <img id="logo" src={image} alt="Logo Not Found" />
                             <SearchBar/>
                             <div>
                             <select onChange={e => handleFilterByAlf(e)}>
+                                <option value = 'All'>Filtra Alfabeticamente</option>
                                 <option value = 'Alf Asc'>Alfabeticamente Ascendente</option>
                                 <option value = 'Alf Des'>Alfabeticamente Descendente</option>
                             </select>
                             <select onChange={e => handleFilterByRating(e)}>
+                                <option value = 'All'>Filtra por Rating</option>
                                 <option value = 'Asc'>Rating Ascendente</option>
                                 <option value = 'Des'>Rating Descendente</option>
                             </select>

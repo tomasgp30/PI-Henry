@@ -1,6 +1,7 @@
 
 const initialState = {
     games: [],
+    detail:[],
     totalGames: [],
     genres: []
 }
@@ -26,7 +27,7 @@ function rootReducer (state = initialState, action){
             const ratingFiltered = action.payload === 'Asc' ? allGames.sort((a, b) => a.rating - b.rating) : allGames.sort((a, b) => b.rating - a.rating)
             return {
                 ...state,
-                games: ratingFiltered
+                games: action.payload ==='All' ? state.totalGames : ratingFiltered
             }
         case 'FILTER_BY_ALF':
             var allGames = state.totalGames
@@ -47,7 +48,7 @@ function rootReducer (state = initialState, action){
               return 0;})
             return {
                 ...state,
-                games: alfFiltered
+                games: action.payload ==='All' ? state.totalGames : alfFiltered
             }
         case 'GET_NAME_GAME':
             return {
@@ -57,11 +58,17 @@ function rootReducer (state = initialState, action){
         case 'POST_GAME':
             return{
                 ...state,
+                detail: action.payload
             }
         case 'GET_GENRES':
             return{
                 ...state,
                 genres: action.payload
+            }
+        case 'GET_DETAILS':
+            return{
+                ...state,
+
             }
         default:
             return state
